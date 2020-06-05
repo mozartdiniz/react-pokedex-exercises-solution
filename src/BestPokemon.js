@@ -24,11 +24,7 @@ function BestPokemonFetcher() {
       });
   }, []);
 
-  if (!bestPokemon) {
-    return null;
-  } else {
-    return <BestPokemon pokemon={bestPokemon} />;
-  }
+  return bestPokemon ? <BestPokemon pokemon={bestPokemon} /> : null;
 }
 
 export default BestPokemonFetcher;
