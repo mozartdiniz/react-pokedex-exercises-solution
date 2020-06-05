@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const BestPokemon = (props) => {
   return (
     <div>
       <p>My favourite Pokemon is Squirtle</p>
       <ul>
-        {props.abilities.map((ability, index) => {
-          return <li key={index}>{ability}</li>;
+        {props.pokemon.abilities.map((ability, index) => {
+          return <li key={index}>{ability.ability.name}</li>;
         })}
       </ul>
     </div>
   );
 };
 
-export default BestPokemon;
+function BestPokemonFetcher() {
+  const [bestPokemon, setBestPokemon] = useState(null);
+
+  useEffect(() => {
+    fetch("https://pokeapi.co/api/v2/pokemon/1/")
+      .then((res) => res.json())
+      .then((data) => {
+        setBestPokemon(data);
+      });
+  }, []);
+
+  if (!bestPokemon) {
+    return null;
+  } else {
+    return <BestPokemon pokemon={bestPokemon} />;
+  }
+}
+
+export default BestPokemonFetcher;
