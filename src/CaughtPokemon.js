@@ -10,6 +10,7 @@ function CaughtPokemon(props) {
   return (
     <p>
       Caught {totalCaught} Pokemon on {props.date}
+      <button onClick={incrementTotal}>Catch Pokemon</button>
     </p>
   );
 }
